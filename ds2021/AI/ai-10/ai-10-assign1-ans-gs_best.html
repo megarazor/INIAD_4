@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ai-10-assign1</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>ai-10-assign1-ans</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14256,22 +14256,33 @@ a.anchor-link {
     </script>
     <!-- End of mathjax configuration --></head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="AI-10-Assignment-1">AI-10 Assignment 1<a class="anchor-link" href="#AI-10-Assignment-1">&#182;</a></h3>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Import-libraries">Import libraries<a class="anchor-link" href="#Import-libraries">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>  <span class="c1"># &lt;-----</span>
 <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">KFold</span><span class="p">,</span> <span class="n">StratifiedKFold</span><span class="p">,</span> <span class="n">cross_val_score</span>
-<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">dump</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span><span class="p">,</span> <span class="n">cross_val_score</span>  <span class="c1"># &lt;-----</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>  <span class="c1"># &lt;-----</span>
 <span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">dump</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>  <span class="c1"># &lt;-----</span>
 </pre></div>
 
      </div>
@@ -14279,10 +14290,15 @@ a.anchor-link {
 </div>
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Load-data-and-set-parameters">Load data and set parameters<a class="anchor-link" href="#Load-data-and-set-parameters">&#182;</a></h4>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">digits_img</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">(</span><span class="n">n_class</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -14319,22 +14335,27 @@ a.anchor-link {
 
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Make-pipeline-and-set-parameters-for-grid-search">Make pipeline and set parameters for grid search<a class="anchor-link" href="#Make-pipeline-and-set-parameters-for-grid-search">&#182;</a></h4>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
-                 <span class="p">(</span><span class="s1">&#39;svc&#39;</span><span class="p">,</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">))])</span>
+                 <span class="p">(</span><span class="s1">&#39;svc&#39;</span><span class="p">,</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">))])</span>  <span class="c1"># &lt;-----</span>
 
-<span class="n">C_grid</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e0</span><span class="p">,</span> <span class="mf">1e1</span><span class="p">,</span> <span class="mf">1e2</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">]</span>
-<span class="n">g_grid</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;scale&#39;</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">,</span> <span class="mf">1e0</span><span class="p">]</span>
+<span class="n">C_grid</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e0</span><span class="p">,</span> <span class="mf">1e1</span><span class="p">,</span> <span class="mf">1e2</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">]</span>  <span class="c1"># or np.logspace(0, 3, num=4) &lt;-----</span>
+<span class="n">g_grid</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;scale&#39;</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">,</span> <span class="mf">1e0</span><span class="p">]</span>  <span class="c1"># or np.logspace(-3, 0, num=4) &lt;-----</span>
 
 <span class="c1"># Hyper paramet settings for grid search</span>
 <span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;svc__C&#39;</span><span class="p">:</span> <span class="n">C_grid</span><span class="p">,</span>
-    <span class="s1">&#39;svc__gamma&#39;</span> <span class="p">:</span> <span class="n">g_grid</span>
+    <span class="s1">&#39;svc__C&#39;</span><span class="p">:</span> <span class="n">C_grid</span><span class="p">,</span>  <span class="c1"># &lt;-----</span>
+    <span class="s1">&#39;svc__gamma&#39;</span> <span class="p">:</span> <span class="n">g_grid</span><span class="p">,</span>  <span class="c1"># &lt;-----</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -14343,14 +14364,19 @@ a.anchor-link {
 </div>
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Preparation-of-objects-for-cross-validation">Preparation of objects for cross validation<a class="anchor-link" href="#Preparation-of-objects-for-cross-validation">&#182;</a></h4>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grid_cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>  <span class="c1"># for grid search</span>
-<span class="n">gen_cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">17</span><span class="p">)</span>  <span class="c1"># for estimation of generalization performance</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grid_cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>  <span class="c1"># &lt;-----</span>
+<span class="n">gen_cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">17</span><span class="p">)</span>  <span class="c1"># &lt;-----</span>
 </pre></div>
 
      </div>
@@ -14358,13 +14384,18 @@ a.anchor-link {
 </div>
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Define-the-grid-search-for-hyper-parameters">Define the grid search for hyper parameters<a class="anchor-link" href="#Define-the-grid-search-for-hyper-parameters">&#182;</a></h4>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gs</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">param_grid</span> <span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">grid_cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gs</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">param_grid</span> <span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">grid_cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>  <span class="c1"># &lt;-----</span>
 </pre></div>
 
      </div>
@@ -14372,17 +14403,22 @@ a.anchor-link {
 </div>
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Estimation-of-generalization-performance">Estimation of generalization performance<a class="anchor-link" href="#Estimation-of-generalization-performance">&#182;</a></h4>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
 <span class="n">nested_score</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">gen_cv</span><span class="p">,</span>
-                               <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
+                               <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>  <span class="c1"># &lt;-----</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">nested_score</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">nested_score</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nested_score</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>  <span class="c1"># &lt;-----</span>
 </pre></div>
 
      </div>
@@ -14404,7 +14440,7 @@ a.anchor-link {
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>[0.98888889 0.99109131 0.99109131 0.99331849]
 0.9910975006186589
-Wall time: 25.3 s
+Wall time: 57.5 s
 </pre>
 </div>
 </div>
@@ -14413,10 +14449,24 @@ Wall time: 25.3 s
 
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>Ans. 0.991</strong></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Cross-validation-to-obtain-the-model-with-the-best-hyperparameter-set-(best-estimator)">Cross-validation to obtain the model with the best hyperparameter set (best estimator)<a class="anchor-link" href="#Cross-validation-to-obtain-the-model-with-the-best-hyperparameter-set-(best-estimator)">&#182;</a></h4><ul>
+<li>Note: gs_best is already fit to the whole data (X) in gs.fit(X,y)  </li>
+</ul>
+
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
@@ -14441,7 +14491,7 @@ Wall time: 25.3 s
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Wall time: 10 s
+<pre>Wall time: 21.9 s
 </pre>
 </div>
 </div>
@@ -14453,7 +14503,7 @@ Wall time: 25.3 s
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gs_best</span><span class="p">)</span>
@@ -14488,7 +14538,853 @@ Wall time: 25.3 s
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gs_best</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>{&#39;memory&#39;: None, &#39;steps&#39;: [(&#39;scaler&#39;, MinMaxScaler()), (&#39;svc&#39;, SVC(C=10.0))], &#39;verbose&#39;: False, &#39;scaler&#39;: MinMaxScaler(), &#39;svc&#39;: SVC(C=10.0), &#39;scaler__clip&#39;: False, &#39;scaler__copy&#39;: True, &#39;scaler__feature_range&#39;: (0, 1), &#39;svc__C&#39;: 10.0, &#39;svc__break_ties&#39;: False, &#39;svc__cache_size&#39;: 200, &#39;svc__class_weight&#39;: None, &#39;svc__coef0&#39;: 0.0, &#39;svc__decision_function_shape&#39;: &#39;ovr&#39;, &#39;svc__degree&#39;: 3, &#39;svc__gamma&#39;: &#39;scale&#39;, &#39;svc__kernel&#39;: &#39;rbf&#39;, &#39;svc__max_iter&#39;: -1, &#39;svc__probability&#39;: False, &#39;svc__random_state&#39;: None, &#39;svc__shrinking&#39;: True, &#39;svc__tol&#39;: 0.001, &#39;svc__verbose&#39;: False}
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">gs_best</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="s1">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>memory -&gt; None
+steps -&gt; [(&#39;scaler&#39;, MinMaxScaler()), (&#39;svc&#39;, SVC(C=10.0))]
+verbose -&gt; False
+scaler -&gt; MinMaxScaler()
+svc -&gt; SVC(C=10.0)
+scaler__clip -&gt; False
+scaler__copy -&gt; True
+scaler__feature_range -&gt; (0, 1)
+svc__C -&gt; 10.0
+svc__break_ties -&gt; False
+svc__cache_size -&gt; 200
+svc__class_weight -&gt; None
+svc__coef0 -&gt; 0.0
+svc__decision_function_shape -&gt; ovr
+svc__degree -&gt; 3
+svc__gamma -&gt; scale
+svc__kernel -&gt; rbf
+svc__max_iter -&gt; -1
+svc__probability -&gt; False
+svc__random_state -&gt; None
+svc__shrinking -&gt; True
+svc__tol -&gt; 0.001
+svc__verbose -&gt; False
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">?</span>SVC
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre><span class="ansi-red-intense-fg ansi-bold">Init signature:</span>
+SVC<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span>    <span class="ansi-yellow-intense-fg ansi-bold">*</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span>    C<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-cyan-intense-fg ansi-bold">1.0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span>    kernel<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-blue-intense-fg ansi-bold">&#39;rbf&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span>    degree<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span>    gamma<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-blue-intense-fg ansi-bold">&#39;scale&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span>    coef0<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-cyan-intense-fg ansi-bold">0.0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span>    shrinking<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-green-intense-fg ansi-bold">True</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span>    probability<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-green-intense-fg ansi-bold">False</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span>    tol<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-cyan-intense-fg ansi-bold">0.001</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span>    cache_size<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-cyan-intense-fg ansi-bold">200</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span>    class_weight<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-green-intense-fg ansi-bold">None</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span>    verbose<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-green-intense-fg ansi-bold">False</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span>    max_iter<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span>    decision_function_shape<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-blue-intense-fg ansi-bold">&#39;ovr&#39;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span>    break_ties<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-green-intense-fg ansi-bold">False</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span>    random_state<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-green-intense-fg ansi-bold">None</span><span class="ansi-yellow-intense-fg ansi-bold">,</span><span class="ansi-yellow-intense-fg ansi-bold">
+</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-red-intense-fg ansi-bold">Docstring:</span>     
+C-Support Vector Classification.
+
+The implementation is based on libsvm. The fit time scales at least
+quadratically with the number of samples and may be impractical
+beyond tens of thousands of samples. For large datasets
+consider using :class:`~sklearn.svm.LinearSVC` or
+:class:`~sklearn.linear_model.SGDClassifier` instead, possibly after a
+:class:`~sklearn.kernel_approximation.Nystroem` transformer.
+
+The multiclass support is handled according to a one-vs-one scheme.
+
+For details on the precise mathematical formulation of the provided
+kernel functions and how `gamma`, `coef0` and `degree` affect each
+other, see the corresponding section in the narrative documentation:
+:ref:`svm_kernels`.
+
+Read more in the :ref:`User Guide &lt;svm_classification&gt;`.
+
+Parameters
+----------
+C : float, default=1.0
+    Regularization parameter. The strength of the regularization is
+    inversely proportional to C. Must be strictly positive. The penalty
+    is a squared l2 penalty.
+
+kernel : {&#39;linear&#39;, &#39;poly&#39;, &#39;rbf&#39;, &#39;sigmoid&#39;, &#39;precomputed&#39;}, default=&#39;rbf&#39;
+    Specifies the kernel type to be used in the algorithm.
+    It must be one of &#39;linear&#39;, &#39;poly&#39;, &#39;rbf&#39;, &#39;sigmoid&#39;, &#39;precomputed&#39; or
+    a callable.
+    If none is given, &#39;rbf&#39; will be used. If a callable is given it is
+    used to pre-compute the kernel matrix from data matrices; that matrix
+    should be an array of shape ``(n_samples, n_samples)``.
+
+degree : int, default=3
+    Degree of the polynomial kernel function (&#39;poly&#39;).
+    Ignored by all other kernels.
+
+gamma : {&#39;scale&#39;, &#39;auto&#39;} or float, default=&#39;scale&#39;
+    Kernel coefficient for &#39;rbf&#39;, &#39;poly&#39; and &#39;sigmoid&#39;.
+
+    - if ``gamma=&#39;scale&#39;`` (default) is passed then it uses
+      1 / (n_features * X.var()) as value of gamma,
+    - if &#39;auto&#39;, uses 1 / n_features.
+
+    .. versionchanged:: 0.22
+       The default value of ``gamma`` changed from &#39;auto&#39; to &#39;scale&#39;.
+
+coef0 : float, default=0.0
+    Independent term in kernel function.
+    It is only significant in &#39;poly&#39; and &#39;sigmoid&#39;.
+
+shrinking : bool, default=True
+    Whether to use the shrinking heuristic.
+    See the :ref:`User Guide &lt;shrinking_svm&gt;`.
+
+probability : bool, default=False
+    Whether to enable probability estimates. This must be enabled prior
+    to calling `fit`, will slow down that method as it internally uses
+    5-fold cross-validation, and `predict_proba` may be inconsistent with
+    `predict`. Read more in the :ref:`User Guide &lt;scores_probabilities&gt;`.
+
+tol : float, default=1e-3
+    Tolerance for stopping criterion.
+
+cache_size : float, default=200
+    Specify the size of the kernel cache (in MB).
+
+class_weight : dict or &#39;balanced&#39;, default=None
+    Set the parameter C of class i to class_weight[i]*C for
+    SVC. If not given, all classes are supposed to have
+    weight one.
+    The &#34;balanced&#34; mode uses the values of y to automatically adjust
+    weights inversely proportional to class frequencies in the input data
+    as ``n_samples / (n_classes * np.bincount(y))``
+
+verbose : bool, default=False
+    Enable verbose output. Note that this setting takes advantage of a
+    per-process runtime setting in libsvm that, if enabled, may not work
+    properly in a multithreaded context.
+
+max_iter : int, default=-1
+    Hard limit on iterations within solver, or -1 for no limit.
+
+decision_function_shape : {&#39;ovo&#39;, &#39;ovr&#39;}, default=&#39;ovr&#39;
+    Whether to return a one-vs-rest (&#39;ovr&#39;) decision function of shape
+    (n_samples, n_classes) as all other classifiers, or the original
+    one-vs-one (&#39;ovo&#39;) decision function of libsvm which has shape
+    (n_samples, n_classes * (n_classes - 1) / 2). However, one-vs-one
+    (&#39;ovo&#39;) is always used as multi-class strategy. The parameter is
+    ignored for binary classification.
+
+    .. versionchanged:: 0.19
+        decision_function_shape is &#39;ovr&#39; by default.
+
+    .. versionadded:: 0.17
+       *decision_function_shape=&#39;ovr&#39;* is recommended.
+
+    .. versionchanged:: 0.17
+       Deprecated *decision_function_shape=&#39;ovo&#39; and None*.
+
+break_ties : bool, default=False
+    If true, ``decision_function_shape=&#39;ovr&#39;``, and number of classes &gt; 2,
+    :term:`predict` will break ties according to the confidence values of
+    :term:`decision_function`; otherwise the first class among the tied
+    classes is returned. Please note that breaking ties comes at a
+    relatively high computational cost compared to a simple predict.
+
+    .. versionadded:: 0.22
+
+random_state : int, RandomState instance or None, default=None
+    Controls the pseudo random number generation for shuffling the data for
+    probability estimates. Ignored when `probability` is False.
+    Pass an int for reproducible output across multiple function calls.
+    See :term:`Glossary &lt;random_state&gt;`.
+
+Attributes
+----------
+class_weight_ : ndarray of shape (n_classes,)
+    Multipliers of parameter C for each class.
+    Computed based on the ``class_weight`` parameter.
+
+classes_ : ndarray of shape (n_classes,)
+    The classes labels.
+
+coef_ : ndarray of shape (n_classes * (n_classes - 1) / 2, n_features)
+    Weights assigned to the features (coefficients in the primal
+    problem). This is only available in the case of a linear kernel.
+
+    `coef_` is a readonly property derived from `dual_coef_` and
+    `support_vectors_`.
+
+dual_coef_ : ndarray of shape (n_classes -1, n_SV)
+    Dual coefficients of the support vector in the decision
+    function (see :ref:`sgd_mathematical_formulation`), multiplied by
+    their targets.
+    For multiclass, coefficient for all 1-vs-1 classifiers.
+    The layout of the coefficients in the multiclass case is somewhat
+    non-trivial. See the :ref:`multi-class section of the User Guide
+    &lt;svm_multi_class&gt;` for details.
+
+fit_status_ : int
+    0 if correctly fitted, 1 otherwise (will raise warning)
+
+intercept_ : ndarray of shape (n_classes * (n_classes - 1) / 2,)
+    Constants in decision function.
+
+support_ : ndarray of shape (n_SV)
+    Indices of support vectors.
+
+support_vectors_ : ndarray of shape (n_SV, n_features)
+    Support vectors.
+
+n_support_ : ndarray of shape (n_classes,), dtype=int32
+    Number of support vectors for each class.
+
+probA_ : ndarray of shape (n_classes * (n_classes - 1) / 2)
+probB_ : ndarray of shape (n_classes * (n_classes - 1) / 2)
+    If `probability=True`, it corresponds to the parameters learned in
+    Platt scaling to produce probability estimates from decision values.
+    If `probability=False`, it&#39;s an empty array. Platt scaling uses the
+    logistic function
+    ``1 / (1 + exp(decision_value * probA_ + probB_))``
+    where ``probA_`` and ``probB_`` are learned from the dataset [2]_. For
+    more information on the multiclass case and training procedure see
+    section 8 of [1]_.
+
+shape_fit_ : tuple of int of shape (n_dimensions_of_X,)
+    Array dimensions of training vector ``X``.
+
+Examples
+--------
+&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; from sklearn.pipeline import make_pipeline
+&gt;&gt;&gt; from sklearn.preprocessing import StandardScaler
+&gt;&gt;&gt; X = np.array([[-1, -1], [-2, -1], [1, 1], [2, 1]])
+&gt;&gt;&gt; y = np.array([1, 1, 2, 2])
+&gt;&gt;&gt; from sklearn.svm import SVC
+&gt;&gt;&gt; clf = make_pipeline(StandardScaler(), SVC(gamma=&#39;auto&#39;))
+&gt;&gt;&gt; clf.fit(X, y)
+Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
+                (&#39;svc&#39;, SVC(gamma=&#39;auto&#39;))])
+
+&gt;&gt;&gt; print(clf.predict([[-0.8, -1]]))
+[1]
+
+See Also
+--------
+SVR : Support Vector Machine for Regression implemented using libsvm.
+
+LinearSVC : Scalable Linear Support Vector Machine for classification
+    implemented using liblinear. Check the See Also section of
+    LinearSVC for more comparison element.
+
+References
+----------
+.. [1] `LIBSVM: A Library for Support Vector Machines
+    &lt;http://www.csie.ntu.edu.tw/~cjlin/papers/libsvm.pdf&gt;`_
+
+.. [2] `Platt, John (1999). &#34;Probabilistic outputs for support vector
+    machines and comparison to regularizedlikelihood methods.&#34;
+    &lt;http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.41.1639&gt;`_
+<span class="ansi-red-intense-fg ansi-bold">File:</span>           c:\users\shugo\miniconda3\envs\ds2021\lib\site-packages\sklearn\svm\_classes.py
+<span class="ansi-red-intense-fg ansi-bold">Type:</span>           ABCMeta
+<span class="ansi-red-intense-fg ansi-bold">Subclasses:</span>     
+</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">SVC</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Help on class SVC in module sklearn.svm._classes:
+
+class SVC(sklearn.svm._base.BaseSVC)
+ |  SVC(*, C=1.0, kernel=&#39;rbf&#39;, degree=3, gamma=&#39;scale&#39;, coef0=0.0, shrinking=True, probability=False, tol=0.001, cache_size=200, class_weight=None, verbose=False, max_iter=-1, decision_function_shape=&#39;ovr&#39;, break_ties=False, random_state=None)
+ |  
+ |  C-Support Vector Classification.
+ |  
+ |  The implementation is based on libsvm. The fit time scales at least
+ |  quadratically with the number of samples and may be impractical
+ |  beyond tens of thousands of samples. For large datasets
+ |  consider using :class:`~sklearn.svm.LinearSVC` or
+ |  :class:`~sklearn.linear_model.SGDClassifier` instead, possibly after a
+ |  :class:`~sklearn.kernel_approximation.Nystroem` transformer.
+ |  
+ |  The multiclass support is handled according to a one-vs-one scheme.
+ |  
+ |  For details on the precise mathematical formulation of the provided
+ |  kernel functions and how `gamma`, `coef0` and `degree` affect each
+ |  other, see the corresponding section in the narrative documentation:
+ |  :ref:`svm_kernels`.
+ |  
+ |  Read more in the :ref:`User Guide &lt;svm_classification&gt;`.
+ |  
+ |  Parameters
+ |  ----------
+ |  C : float, default=1.0
+ |      Regularization parameter. The strength of the regularization is
+ |      inversely proportional to C. Must be strictly positive. The penalty
+ |      is a squared l2 penalty.
+ |  
+ |  kernel : {&#39;linear&#39;, &#39;poly&#39;, &#39;rbf&#39;, &#39;sigmoid&#39;, &#39;precomputed&#39;}, default=&#39;rbf&#39;
+ |      Specifies the kernel type to be used in the algorithm.
+ |      It must be one of &#39;linear&#39;, &#39;poly&#39;, &#39;rbf&#39;, &#39;sigmoid&#39;, &#39;precomputed&#39; or
+ |      a callable.
+ |      If none is given, &#39;rbf&#39; will be used. If a callable is given it is
+ |      used to pre-compute the kernel matrix from data matrices; that matrix
+ |      should be an array of shape ``(n_samples, n_samples)``.
+ |  
+ |  degree : int, default=3
+ |      Degree of the polynomial kernel function (&#39;poly&#39;).
+ |      Ignored by all other kernels.
+ |  
+ |  gamma : {&#39;scale&#39;, &#39;auto&#39;} or float, default=&#39;scale&#39;
+ |      Kernel coefficient for &#39;rbf&#39;, &#39;poly&#39; and &#39;sigmoid&#39;.
+ |  
+ |      - if ``gamma=&#39;scale&#39;`` (default) is passed then it uses
+ |        1 / (n_features * X.var()) as value of gamma,
+ |      - if &#39;auto&#39;, uses 1 / n_features.
+ |  
+ |      .. versionchanged:: 0.22
+ |         The default value of ``gamma`` changed from &#39;auto&#39; to &#39;scale&#39;.
+ |  
+ |  coef0 : float, default=0.0
+ |      Independent term in kernel function.
+ |      It is only significant in &#39;poly&#39; and &#39;sigmoid&#39;.
+ |  
+ |  shrinking : bool, default=True
+ |      Whether to use the shrinking heuristic.
+ |      See the :ref:`User Guide &lt;shrinking_svm&gt;`.
+ |  
+ |  probability : bool, default=False
+ |      Whether to enable probability estimates. This must be enabled prior
+ |      to calling `fit`, will slow down that method as it internally uses
+ |      5-fold cross-validation, and `predict_proba` may be inconsistent with
+ |      `predict`. Read more in the :ref:`User Guide &lt;scores_probabilities&gt;`.
+ |  
+ |  tol : float, default=1e-3
+ |      Tolerance for stopping criterion.
+ |  
+ |  cache_size : float, default=200
+ |      Specify the size of the kernel cache (in MB).
+ |  
+ |  class_weight : dict or &#39;balanced&#39;, default=None
+ |      Set the parameter C of class i to class_weight[i]*C for
+ |      SVC. If not given, all classes are supposed to have
+ |      weight one.
+ |      The &#34;balanced&#34; mode uses the values of y to automatically adjust
+ |      weights inversely proportional to class frequencies in the input data
+ |      as ``n_samples / (n_classes * np.bincount(y))``
+ |  
+ |  verbose : bool, default=False
+ |      Enable verbose output. Note that this setting takes advantage of a
+ |      per-process runtime setting in libsvm that, if enabled, may not work
+ |      properly in a multithreaded context.
+ |  
+ |  max_iter : int, default=-1
+ |      Hard limit on iterations within solver, or -1 for no limit.
+ |  
+ |  decision_function_shape : {&#39;ovo&#39;, &#39;ovr&#39;}, default=&#39;ovr&#39;
+ |      Whether to return a one-vs-rest (&#39;ovr&#39;) decision function of shape
+ |      (n_samples, n_classes) as all other classifiers, or the original
+ |      one-vs-one (&#39;ovo&#39;) decision function of libsvm which has shape
+ |      (n_samples, n_classes * (n_classes - 1) / 2). However, one-vs-one
+ |      (&#39;ovo&#39;) is always used as multi-class strategy. The parameter is
+ |      ignored for binary classification.
+ |  
+ |      .. versionchanged:: 0.19
+ |          decision_function_shape is &#39;ovr&#39; by default.
+ |  
+ |      .. versionadded:: 0.17
+ |         *decision_function_shape=&#39;ovr&#39;* is recommended.
+ |  
+ |      .. versionchanged:: 0.17
+ |         Deprecated *decision_function_shape=&#39;ovo&#39; and None*.
+ |  
+ |  break_ties : bool, default=False
+ |      If true, ``decision_function_shape=&#39;ovr&#39;``, and number of classes &gt; 2,
+ |      :term:`predict` will break ties according to the confidence values of
+ |      :term:`decision_function`; otherwise the first class among the tied
+ |      classes is returned. Please note that breaking ties comes at a
+ |      relatively high computational cost compared to a simple predict.
+ |  
+ |      .. versionadded:: 0.22
+ |  
+ |  random_state : int, RandomState instance or None, default=None
+ |      Controls the pseudo random number generation for shuffling the data for
+ |      probability estimates. Ignored when `probability` is False.
+ |      Pass an int for reproducible output across multiple function calls.
+ |      See :term:`Glossary &lt;random_state&gt;`.
+ |  
+ |  Attributes
+ |  ----------
+ |  class_weight_ : ndarray of shape (n_classes,)
+ |      Multipliers of parameter C for each class.
+ |      Computed based on the ``class_weight`` parameter.
+ |  
+ |  classes_ : ndarray of shape (n_classes,)
+ |      The classes labels.
+ |  
+ |  coef_ : ndarray of shape (n_classes * (n_classes - 1) / 2, n_features)
+ |      Weights assigned to the features (coefficients in the primal
+ |      problem). This is only available in the case of a linear kernel.
+ |  
+ |      `coef_` is a readonly property derived from `dual_coef_` and
+ |      `support_vectors_`.
+ |  
+ |  dual_coef_ : ndarray of shape (n_classes -1, n_SV)
+ |      Dual coefficients of the support vector in the decision
+ |      function (see :ref:`sgd_mathematical_formulation`), multiplied by
+ |      their targets.
+ |      For multiclass, coefficient for all 1-vs-1 classifiers.
+ |      The layout of the coefficients in the multiclass case is somewhat
+ |      non-trivial. See the :ref:`multi-class section of the User Guide
+ |      &lt;svm_multi_class&gt;` for details.
+ |  
+ |  fit_status_ : int
+ |      0 if correctly fitted, 1 otherwise (will raise warning)
+ |  
+ |  intercept_ : ndarray of shape (n_classes * (n_classes - 1) / 2,)
+ |      Constants in decision function.
+ |  
+ |  support_ : ndarray of shape (n_SV)
+ |      Indices of support vectors.
+ |  
+ |  support_vectors_ : ndarray of shape (n_SV, n_features)
+ |      Support vectors.
+ |  
+ |  n_support_ : ndarray of shape (n_classes,), dtype=int32
+ |      Number of support vectors for each class.
+ |  
+ |  probA_ : ndarray of shape (n_classes * (n_classes - 1) / 2)
+ |  probB_ : ndarray of shape (n_classes * (n_classes - 1) / 2)
+ |      If `probability=True`, it corresponds to the parameters learned in
+ |      Platt scaling to produce probability estimates from decision values.
+ |      If `probability=False`, it&#39;s an empty array. Platt scaling uses the
+ |      logistic function
+ |      ``1 / (1 + exp(decision_value * probA_ + probB_))``
+ |      where ``probA_`` and ``probB_`` are learned from the dataset [2]_. For
+ |      more information on the multiclass case and training procedure see
+ |      section 8 of [1]_.
+ |  
+ |  shape_fit_ : tuple of int of shape (n_dimensions_of_X,)
+ |      Array dimensions of training vector ``X``.
+ |  
+ |  Examples
+ |  --------
+ |  &gt;&gt;&gt; import numpy as np
+ |  &gt;&gt;&gt; from sklearn.pipeline import make_pipeline
+ |  &gt;&gt;&gt; from sklearn.preprocessing import StandardScaler
+ |  &gt;&gt;&gt; X = np.array([[-1, -1], [-2, -1], [1, 1], [2, 1]])
+ |  &gt;&gt;&gt; y = np.array([1, 1, 2, 2])
+ |  &gt;&gt;&gt; from sklearn.svm import SVC
+ |  &gt;&gt;&gt; clf = make_pipeline(StandardScaler(), SVC(gamma=&#39;auto&#39;))
+ |  &gt;&gt;&gt; clf.fit(X, y)
+ |  Pipeline(steps=[(&#39;standardscaler&#39;, StandardScaler()),
+ |                  (&#39;svc&#39;, SVC(gamma=&#39;auto&#39;))])
+ |  
+ |  &gt;&gt;&gt; print(clf.predict([[-0.8, -1]]))
+ |  [1]
+ |  
+ |  See Also
+ |  --------
+ |  SVR : Support Vector Machine for Regression implemented using libsvm.
+ |  
+ |  LinearSVC : Scalable Linear Support Vector Machine for classification
+ |      implemented using liblinear. Check the See Also section of
+ |      LinearSVC for more comparison element.
+ |  
+ |  References
+ |  ----------
+ |  .. [1] `LIBSVM: A Library for Support Vector Machines
+ |      &lt;http://www.csie.ntu.edu.tw/~cjlin/papers/libsvm.pdf&gt;`_
+ |  
+ |  .. [2] `Platt, John (1999). &#34;Probabilistic outputs for support vector
+ |      machines and comparison to regularizedlikelihood methods.&#34;
+ |      &lt;http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.41.1639&gt;`_
+ |  
+ |  Method resolution order:
+ |      SVC
+ |      sklearn.svm._base.BaseSVC
+ |      sklearn.base.ClassifierMixin
+ |      sklearn.svm._base.BaseLibSVM
+ |      sklearn.base.BaseEstimator
+ |      builtins.object
+ |  
+ |  Methods defined here:
+ |  
+ |  __init__(self, *, C=1.0, kernel=&#39;rbf&#39;, degree=3, gamma=&#39;scale&#39;, coef0=0.0, shrinking=True, probability=False, tol=0.001, cache_size=200, class_weight=None, verbose=False, max_iter=-1, decision_function_shape=&#39;ovr&#39;, break_ties=False, random_state=None)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |  
+ |  __abstractmethods__ = frozenset()
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from sklearn.svm._base.BaseSVC:
+ |  
+ |  decision_function(self, X)
+ |      Evaluates the decision function for the samples in X.
+ |      
+ |      Parameters
+ |      ----------
+ |      X : array-like of shape (n_samples, n_features)
+ |      
+ |      Returns
+ |      -------
+ |      X : ndarray of shape (n_samples, n_classes * (n_classes-1) / 2)
+ |          Returns the decision function of the sample for each class
+ |          in the model.
+ |          If decision_function_shape=&#39;ovr&#39;, the shape is (n_samples,
+ |          n_classes).
+ |      
+ |      Notes
+ |      -----
+ |      If decision_function_shape=&#39;ovo&#39;, the function values are proportional
+ |      to the distance of the samples X to the separating hyperplane. If the
+ |      exact distances are required, divide the function values by the norm of
+ |      the weight vector (``coef_``). See also `this question
+ |      &lt;https://stats.stackexchange.com/questions/14876/
+ |      interpreting-distance-from-hyperplane-in-svm&gt;`_ for further details.
+ |      If decision_function_shape=&#39;ovr&#39;, the decision function is a monotonic
+ |      transformation of ovo decision function.
+ |  
+ |  predict(self, X)
+ |      Perform classification on samples in X.
+ |      
+ |      For an one-class model, +1 or -1 is returned.
+ |      
+ |      Parameters
+ |      ----------
+ |      X : {array-like, sparse matrix} of shape (n_samples, n_features) or                 (n_samples_test, n_samples_train)
+ |          For kernel=&#34;precomputed&#34;, the expected shape of X is
+ |          (n_samples_test, n_samples_train).
+ |      
+ |      Returns
+ |      -------
+ |      y_pred : ndarray of shape (n_samples,)
+ |          Class labels for samples in X.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Readonly properties inherited from sklearn.svm._base.BaseSVC:
+ |  
+ |  predict_log_proba
+ |      Compute log probabilities of possible outcomes for samples in X.
+ |      
+ |      The model need to have probability information computed at training
+ |      time: fit with attribute `probability` set to True.
+ |      
+ |      Parameters
+ |      ----------
+ |      X : array-like of shape (n_samples, n_features) or                 (n_samples_test, n_samples_train)
+ |          For kernel=&#34;precomputed&#34;, the expected shape of X is
+ |          (n_samples_test, n_samples_train).
+ |      
+ |      Returns
+ |      -------
+ |      T : ndarray of shape (n_samples, n_classes)
+ |          Returns the log-probabilities of the sample for each class in
+ |          the model. The columns correspond to the classes in sorted
+ |          order, as they appear in the attribute :term:`classes_`.
+ |      
+ |      Notes
+ |      -----
+ |      The probability model is created using cross validation, so
+ |      the results can be slightly different than those obtained by
+ |      predict. Also, it will produce meaningless results on very small
+ |      datasets.
+ |  
+ |  predict_proba
+ |      Compute probabilities of possible outcomes for samples in X.
+ |      
+ |      The model need to have probability information computed at training
+ |      time: fit with attribute `probability` set to True.
+ |      
+ |      Parameters
+ |      ----------
+ |      X : array-like of shape (n_samples, n_features)
+ |          For kernel=&#34;precomputed&#34;, the expected shape of X is
+ |          (n_samples_test, n_samples_train).
+ |      
+ |      Returns
+ |      -------
+ |      T : ndarray of shape (n_samples, n_classes)
+ |          Returns the probability of the sample for each class in
+ |          the model. The columns correspond to the classes in sorted
+ |          order, as they appear in the attribute :term:`classes_`.
+ |      
+ |      Notes
+ |      -----
+ |      The probability model is created using cross validation, so
+ |      the results can be slightly different than those obtained by
+ |      predict. Also, it will produce meaningless results on very small
+ |      datasets.
+ |  
+ |  probA_
+ |  
+ |  probB_
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from sklearn.base.ClassifierMixin:
+ |  
+ |  score(self, X, y, sample_weight=None)
+ |      Return the mean accuracy on the given test data and labels.
+ |      
+ |      In multi-label classification, this is the subset accuracy
+ |      which is a harsh metric since you require for each sample that
+ |      each label set be correctly predicted.
+ |      
+ |      Parameters
+ |      ----------
+ |      X : array-like of shape (n_samples, n_features)
+ |          Test samples.
+ |      
+ |      y : array-like of shape (n_samples,) or (n_samples, n_outputs)
+ |          True labels for `X`.
+ |      
+ |      sample_weight : array-like of shape (n_samples,), default=None
+ |          Sample weights.
+ |      
+ |      Returns
+ |      -------
+ |      score : float
+ |          Mean accuracy of ``self.predict(X)`` wrt. `y`.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors inherited from sklearn.base.ClassifierMixin:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from sklearn.svm._base.BaseLibSVM:
+ |  
+ |  fit(self, X, y, sample_weight=None)
+ |      Fit the SVM model according to the given training data.
+ |      
+ |      Parameters
+ |      ----------
+ |      X : {array-like, sparse matrix} of shape (n_samples, n_features)                 or (n_samples, n_samples)
+ |          Training vectors, where n_samples is the number of samples
+ |          and n_features is the number of features.
+ |          For kernel=&#34;precomputed&#34;, the expected shape of X is
+ |          (n_samples, n_samples).
+ |      
+ |      y : array-like of shape (n_samples,)
+ |          Target values (class labels in classification, real numbers in
+ |          regression).
+ |      
+ |      sample_weight : array-like of shape (n_samples,), default=None
+ |          Per-sample weights. Rescale C per sample. Higher weights
+ |          force the classifier to put more emphasis on these points.
+ |      
+ |      Returns
+ |      -------
+ |      self : object
+ |      
+ |      Notes
+ |      -----
+ |      If X and y are not C-ordered and contiguous arrays of np.float64 and
+ |      X is not a scipy.sparse.csr_matrix, X and/or y may be copied.
+ |      
+ |      If X is a dense array, then the other methods will not support sparse
+ |      matrices as input.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Readonly properties inherited from sklearn.svm._base.BaseLibSVM:
+ |  
+ |  coef_
+ |  
+ |  n_support_
+ |  
+ |  ----------------------------------------------------------------------
+ |  Methods inherited from sklearn.base.BaseEstimator:
+ |  
+ |  __getstate__(self)
+ |  
+ |  __repr__(self, N_CHAR_MAX=700)
+ |      Return repr(self).
+ |  
+ |  __setstate__(self, state)
+ |  
+ |  get_params(self, deep=True)
+ |      Get parameters for this estimator.
+ |      
+ |      Parameters
+ |      ----------
+ |      deep : bool, default=True
+ |          If True, will return the parameters for this estimator and
+ |          contained subobjects that are estimators.
+ |      
+ |      Returns
+ |      -------
+ |      params : dict
+ |          Parameter names mapped to their values.
+ |  
+ |  set_params(self, **params)
+ |      Set the parameters of this estimator.
+ |      
+ |      The method works on simple estimators as well as on nested objects
+ |      (such as :class:`~sklearn.pipeline.Pipeline`). The latter have
+ |      parameters of the form ``&lt;component&gt;__&lt;parameter&gt;`` so that it&#39;s
+ |      possible to update each component of a nested object.
+ |      
+ |      Parameters
+ |      ----------
+ |      **params : dict
+ |          Estimator parameters.
+ |      
+ |      Returns
+ |      -------
+ |      self : estimator instance
+ |          Estimator instance.
+
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><strong>Ans. C:10, gamma:'scale' (default)</strong></p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="Save-the-best-predictor">Save the best predictor<a class="anchor-link" href="#Save-the-best-predictor">&#182;</a></h4>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tag</span> <span class="o">=</span> <span class="s1">&#39;ai-10-assign1&#39;</span>
@@ -14509,7 +15405,7 @@ Wall time: 25.3 s
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[33]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
 
 
 
@@ -14522,20 +15418,6 @@ Wall time: 25.3 s
 
 </div>
 
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-     </div>
-</div>
-</div>
 </div>
 
 </div>
