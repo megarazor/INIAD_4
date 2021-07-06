@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ai-10-assign1</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>ai-11-assign1</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14259,19 +14259,29 @@ a.anchor-link {
 <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">KFold</span><span class="p">,</span> <span class="n">StratifiedKFold</span><span class="p">,</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">StratifiedKFold</span><span class="p">,</span> <span class="n">cross_val_score</span>
 <span class="kn">from</span> <span class="nn">joblib</span> <span class="kn">import</span> <span class="n">dump</span>
-<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">csv_in</span> <span class="o">=</span> <span class="s1">&#39;../ai-08/cancer.csv&#39;</span>
 </pre></div>
 
      </div>
@@ -14282,14 +14292,13 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">digits_img</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_digits</span><span class="p">(</span><span class="n">n_class</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">digits_img</span><span class="o">.</span><span class="n">data</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">digits_img</span><span class="o">.</span><span class="n">target</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_in</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 
      </div>
@@ -14309,8 +14318,513 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>(1797, 64)
-(1797,)
+<pre>(569, 32)
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 569 entries, 0 to 568
+Data columns (total 32 columns):
+ #   Column   Non-Null Count  Dtype  
+---  ------   --------------  -----  
+ 0   ID       569 non-null    int64  
+ 1   Diag     569 non-null    object 
+ 2   ave_a    569 non-null    float64
+ 3   ave_b    569 non-null    float64
+ 4   ave_c    569 non-null    float64
+ 5   ave_d    569 non-null    float64
+ 6   ave_e    569 non-null    float64
+ 7   ave_f    569 non-null    float64
+ 8   ave_g    569 non-null    float64
+ 9   ave_h    569 non-null    float64
+ 10  ave_i    569 non-null    float64
+ 11  ave_j    569 non-null    float64
+ 12  se_a     569 non-null    float64
+ 13  se_b     569 non-null    float64
+ 14  se_c     569 non-null    float64
+ 15  se_d     569 non-null    float64
+ 16  se_e     569 non-null    float64
+ 17  se_f     569 non-null    float64
+ 18  se_g     569 non-null    float64
+ 19  se_h     569 non-null    float64
+ 20  se_i     569 non-null    float64
+ 21  se_j     569 non-null    float64
+ 22  worst_a  569 non-null    float64
+ 23  worst_b  569 non-null    float64
+ 24  worst_c  569 non-null    float64
+ 25  worst_d  569 non-null    float64
+ 26  worst_e  569 non-null    float64
+ 27  worst_f  569 non-null    float64
+ 28  worst_g  569 non-null    float64
+ 29  worst_h  569 non-null    float64
+ 30  worst_i  569 non-null    float64
+ 31  worst_j  569 non-null    float64
+dtypes: float64(30), int64(1), object(1)
+memory usage: 142.4+ KB
+None
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>Diag</th>
+      <th>ave_a</th>
+      <th>ave_b</th>
+      <th>ave_c</th>
+      <th>ave_d</th>
+      <th>ave_e</th>
+      <th>ave_f</th>
+      <th>ave_g</th>
+      <th>ave_h</th>
+      <th>...</th>
+      <th>worst_a</th>
+      <th>worst_b</th>
+      <th>worst_c</th>
+      <th>worst_d</th>
+      <th>worst_e</th>
+      <th>worst_f</th>
+      <th>worst_g</th>
+      <th>worst_h</th>
+      <th>worst_i</th>
+      <th>worst_j</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>842302</td>
+      <td>M</td>
+      <td>17.99</td>
+      <td>10.38</td>
+      <td>122.80</td>
+      <td>1001.0</td>
+      <td>0.11840</td>
+      <td>0.27760</td>
+      <td>0.3001</td>
+      <td>0.14710</td>
+      <td>...</td>
+      <td>25.38</td>
+      <td>17.33</td>
+      <td>184.60</td>
+      <td>2019.0</td>
+      <td>0.1622</td>
+      <td>0.6656</td>
+      <td>0.7119</td>
+      <td>0.2654</td>
+      <td>0.4601</td>
+      <td>0.11890</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>842517</td>
+      <td>M</td>
+      <td>20.57</td>
+      <td>17.77</td>
+      <td>132.90</td>
+      <td>1326.0</td>
+      <td>0.08474</td>
+      <td>0.07864</td>
+      <td>0.0869</td>
+      <td>0.07017</td>
+      <td>...</td>
+      <td>24.99</td>
+      <td>23.41</td>
+      <td>158.80</td>
+      <td>1956.0</td>
+      <td>0.1238</td>
+      <td>0.1866</td>
+      <td>0.2416</td>
+      <td>0.1860</td>
+      <td>0.2750</td>
+      <td>0.08902</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>84300903</td>
+      <td>M</td>
+      <td>19.69</td>
+      <td>21.25</td>
+      <td>130.00</td>
+      <td>1203.0</td>
+      <td>0.10960</td>
+      <td>0.15990</td>
+      <td>0.1974</td>
+      <td>0.12790</td>
+      <td>...</td>
+      <td>23.57</td>
+      <td>25.53</td>
+      <td>152.50</td>
+      <td>1709.0</td>
+      <td>0.1444</td>
+      <td>0.4245</td>
+      <td>0.4504</td>
+      <td>0.2430</td>
+      <td>0.3613</td>
+      <td>0.08758</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>84348301</td>
+      <td>M</td>
+      <td>11.42</td>
+      <td>20.38</td>
+      <td>77.58</td>
+      <td>386.1</td>
+      <td>0.14250</td>
+      <td>0.28390</td>
+      <td>0.2414</td>
+      <td>0.10520</td>
+      <td>...</td>
+      <td>14.91</td>
+      <td>26.50</td>
+      <td>98.87</td>
+      <td>567.7</td>
+      <td>0.2098</td>
+      <td>0.8663</td>
+      <td>0.6869</td>
+      <td>0.2575</td>
+      <td>0.6638</td>
+      <td>0.17300</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>84358402</td>
+      <td>M</td>
+      <td>20.29</td>
+      <td>14.34</td>
+      <td>135.10</td>
+      <td>1297.0</td>
+      <td>0.10030</td>
+      <td>0.13280</td>
+      <td>0.1980</td>
+      <td>0.10430</td>
+      <td>...</td>
+      <td>22.54</td>
+      <td>16.67</td>
+      <td>152.20</td>
+      <td>1575.0</td>
+      <td>0.1374</td>
+      <td>0.2050</td>
+      <td>0.4000</td>
+      <td>0.1625</td>
+      <td>0.2364</td>
+      <td>0.07678</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 32 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_X</span><span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;ave_a&#39;</span><span class="p">:]</span>
+<span class="n">ser_y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Diag&#39;</span><span class="p">]</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df_X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_X</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df_X</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ser_y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ser_y</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>(569, 30)
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 569 entries, 0 to 568
+Data columns (total 30 columns):
+ #   Column   Non-Null Count  Dtype  
+---  ------   --------------  -----  
+ 0   ave_a    569 non-null    float64
+ 1   ave_b    569 non-null    float64
+ 2   ave_c    569 non-null    float64
+ 3   ave_d    569 non-null    float64
+ 4   ave_e    569 non-null    float64
+ 5   ave_f    569 non-null    float64
+ 6   ave_g    569 non-null    float64
+ 7   ave_h    569 non-null    float64
+ 8   ave_i    569 non-null    float64
+ 9   ave_j    569 non-null    float64
+ 10  se_a     569 non-null    float64
+ 11  se_b     569 non-null    float64
+ 12  se_c     569 non-null    float64
+ 13  se_d     569 non-null    float64
+ 14  se_e     569 non-null    float64
+ 15  se_f     569 non-null    float64
+ 16  se_g     569 non-null    float64
+ 17  se_h     569 non-null    float64
+ 18  se_i     569 non-null    float64
+ 19  se_j     569 non-null    float64
+ 20  worst_a  569 non-null    float64
+ 21  worst_b  569 non-null    float64
+ 22  worst_c  569 non-null    float64
+ 23  worst_d  569 non-null    float64
+ 24  worst_e  569 non-null    float64
+ 25  worst_f  569 non-null    float64
+ 26  worst_g  569 non-null    float64
+ 27  worst_h  569 non-null    float64
+ 28  worst_i  569 non-null    float64
+ 29  worst_j  569 non-null    float64
+dtypes: float64(30)
+memory usage: 133.5 KB
+None
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ave_a</th>
+      <th>ave_b</th>
+      <th>ave_c</th>
+      <th>ave_d</th>
+      <th>ave_e</th>
+      <th>ave_f</th>
+      <th>ave_g</th>
+      <th>ave_h</th>
+      <th>ave_i</th>
+      <th>ave_j</th>
+      <th>...</th>
+      <th>worst_a</th>
+      <th>worst_b</th>
+      <th>worst_c</th>
+      <th>worst_d</th>
+      <th>worst_e</th>
+      <th>worst_f</th>
+      <th>worst_g</th>
+      <th>worst_h</th>
+      <th>worst_i</th>
+      <th>worst_j</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>17.99</td>
+      <td>10.38</td>
+      <td>122.80</td>
+      <td>1001.0</td>
+      <td>0.11840</td>
+      <td>0.27760</td>
+      <td>0.3001</td>
+      <td>0.14710</td>
+      <td>0.2419</td>
+      <td>0.07871</td>
+      <td>...</td>
+      <td>25.38</td>
+      <td>17.33</td>
+      <td>184.60</td>
+      <td>2019.0</td>
+      <td>0.1622</td>
+      <td>0.6656</td>
+      <td>0.7119</td>
+      <td>0.2654</td>
+      <td>0.4601</td>
+      <td>0.11890</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>20.57</td>
+      <td>17.77</td>
+      <td>132.90</td>
+      <td>1326.0</td>
+      <td>0.08474</td>
+      <td>0.07864</td>
+      <td>0.0869</td>
+      <td>0.07017</td>
+      <td>0.1812</td>
+      <td>0.05667</td>
+      <td>...</td>
+      <td>24.99</td>
+      <td>23.41</td>
+      <td>158.80</td>
+      <td>1956.0</td>
+      <td>0.1238</td>
+      <td>0.1866</td>
+      <td>0.2416</td>
+      <td>0.1860</td>
+      <td>0.2750</td>
+      <td>0.08902</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>19.69</td>
+      <td>21.25</td>
+      <td>130.00</td>
+      <td>1203.0</td>
+      <td>0.10960</td>
+      <td>0.15990</td>
+      <td>0.1974</td>
+      <td>0.12790</td>
+      <td>0.2069</td>
+      <td>0.05999</td>
+      <td>...</td>
+      <td>23.57</td>
+      <td>25.53</td>
+      <td>152.50</td>
+      <td>1709.0</td>
+      <td>0.1444</td>
+      <td>0.4245</td>
+      <td>0.4504</td>
+      <td>0.2430</td>
+      <td>0.3613</td>
+      <td>0.08758</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>11.42</td>
+      <td>20.38</td>
+      <td>77.58</td>
+      <td>386.1</td>
+      <td>0.14250</td>
+      <td>0.28390</td>
+      <td>0.2414</td>
+      <td>0.10520</td>
+      <td>0.2597</td>
+      <td>0.09744</td>
+      <td>...</td>
+      <td>14.91</td>
+      <td>26.50</td>
+      <td>98.87</td>
+      <td>567.7</td>
+      <td>0.2098</td>
+      <td>0.8663</td>
+      <td>0.6869</td>
+      <td>0.2575</td>
+      <td>0.6638</td>
+      <td>0.17300</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>20.29</td>
+      <td>14.34</td>
+      <td>135.10</td>
+      <td>1297.0</td>
+      <td>0.10030</td>
+      <td>0.13280</td>
+      <td>0.1980</td>
+      <td>0.10430</td>
+      <td>0.1809</td>
+      <td>0.05883</td>
+      <td>...</td>
+      <td>22.54</td>
+      <td>16.67</td>
+      <td>152.20</td>
+      <td>1575.0</td>
+      <td>0.1374</td>
+      <td>0.2050</td>
+      <td>0.4000</td>
+      <td>0.1625</td>
+      <td>0.2364</td>
+      <td>0.07678</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 30 columns</p>
+</div>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>(569,)
+0    M
+1    M
+2    M
+3    M
+4    M
+Name: Diag, dtype: object
 </pre>
 </div>
 </div>
@@ -14322,19 +14836,15 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">MinMaxScaler</span><span class="p">(</span><span class="n">feature_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">copy</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
-                 <span class="p">(</span><span class="s1">&#39;svc&#39;</span><span class="p">,</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">))])</span>
-
-<span class="n">C_grid</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e0</span><span class="p">,</span> <span class="mf">1e1</span><span class="p">,</span> <span class="mf">1e2</span><span class="p">,</span> <span class="mf">1e3</span><span class="p">]</span>
-<span class="n">g_grid</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;scale&#39;</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">,</span> <span class="mf">1e0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rfc</span><span class="o">=</span><span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>            
 
 <span class="c1"># Hyper paramet settings for grid search</span>
 <span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;svc__C&#39;</span><span class="p">:</span> <span class="n">C_grid</span><span class="p">,</span>
-    <span class="s1">&#39;svc__gamma&#39;</span> <span class="p">:</span> <span class="n">g_grid</span>
+    <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
+    <span class="s1">&#39;max_depth&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -14346,11 +14856,11 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grid_cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>  <span class="c1"># for grid search</span>
-<span class="n">gen_cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">17</span><span class="p">)</span>  <span class="c1"># for estimation of generalization performance</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">grid_cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">17</span><span class="p">)</span>
+<span class="n">gen_cv</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">19</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14361,10 +14871,10 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gs</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">pipe</span><span class="p">,</span> <span class="n">param_grid</span> <span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">grid_cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gs</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">rfc</span><span class="p">,</span> <span class="n">param_grid</span> <span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">grid_cv</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14375,11 +14885,11 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">nested_score</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">gen_cv</span><span class="p">,</span>
+<span class="n">nested_score</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">gs</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">df_X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">ser_y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">gen_cv</span><span class="p">,</span>
                                <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">nested_score</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">nested_score</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
@@ -14402,9 +14912,9 @@ a.anchor-link {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[0.98888889 0.99109131 0.99109131 0.99331849]
-0.9910975006186589
-Wall time: 25.3 s
+<pre>[0.96503497 0.92957746 0.95774648 0.97183099]
+0.9560474736531075
+Wall time: 2min 4s
 </pre>
 </div>
 </div>
@@ -14416,11 +14926,11 @@ Wall time: 25.3 s
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[29]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">gs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">gs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df_X</span><span class="p">,</span> <span class="n">ser_y</span><span class="p">)</span>
 <span class="n">gs_best</span> <span class="o">=</span> <span class="n">gs</span><span class="o">.</span><span class="n">best_estimator_</span>
 </pre></div>
 
@@ -14441,7 +14951,7 @@ Wall time: 25.3 s
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Wall time: 10 s
+<pre>Wall time: 34.3 s
 </pre>
 </div>
 </div>
@@ -14453,7 +14963,7 @@ Wall time: 25.3 s
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[30]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">gs_best</span><span class="p">)</span>
@@ -14476,7 +14986,72 @@ Wall time: 25.3 s
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Pipeline(steps=[(&#39;scaler&#39;, MinMaxScaler()), (&#39;svc&#39;, SVC(C=10.0))])
+<pre>RandomForestClassifier(n_estimators=500, random_state=13)
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[31]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">gs_best</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">df_X</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>ave_a      0.037807
+ave_b      0.013900
+ave_c      0.044392
+ave_d      0.051319
+ave_e      0.006326
+ave_f      0.010568
+ave_g      0.056455
+ave_h      0.108826
+ave_i      0.003912
+ave_j      0.003625
+se_a       0.011245
+se_b       0.004413
+se_c       0.013087
+se_d       0.036506
+se_e       0.003872
+se_f       0.004571
+se_g       0.006961
+se_h       0.004241
+se_i       0.004594
+se_j       0.005199
+worst_a    0.109471
+worst_b    0.017264
+worst_c    0.140128
+worst_d    0.097140
+worst_e    0.013382
+worst_f    0.013550
+worst_g    0.034966
+worst_h    0.124988
+worst_i    0.009765
+worst_j    0.007528
+dtype: float64
 </pre>
 </div>
 </div>
@@ -14491,8 +15066,50 @@ Wall time: 25.3 s
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tag</span> <span class="o">=</span> <span class="s1">&#39;ai-10-assign1&#39;</span>
-<span class="n">model_file</span> <span class="o">=</span> <span class="s1">&#39;svc_best_</span><span class="si">{}</span><span class="s1">.joblib&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df_X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">gs_best</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Importance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedImage jp-OutputArea-output ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tag</span> <span class="o">=</span> <span class="s1">&#39;cancer&#39;</span>
+<span class="n">model_file</span> <span class="o">=</span> <span class="s1">&#39;rfc_best_</span><span class="si">{}</span><span class="s1">.joblib&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
 <span class="n">dump</span><span class="p">(</span><span class="n">gs_best</span><span class="p">,</span> <span class="n">model_file</span><span class="p">)</span>
 </pre></div>
 
@@ -14509,13 +15126,13 @@ Wall time: 25.3 s
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[33]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[32]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[&#39;svc_best_ai-10-assign1.joblib&#39;]</pre>
+<pre>[&#39;rfc_best_cancer.joblib&#39;]</pre>
 </div>
 
 </div>
