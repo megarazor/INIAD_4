@@ -5,6 +5,9 @@ node_modules/
 .ipynb_checkpoints
 *.tsbuildinfo
 jupyterlab_git/labextension
+ds2021/DL/dl-03/HARDataset/
+ds2021/DL/dl-03/ESC3/
+
 
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
