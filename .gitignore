@@ -7,6 +7,7 @@ node_modules/
 jupyterlab_git/labextension
 ds2021/DL/dl-03/HARDataset/
 ds2021/DL/dl-03/ESC3/
+ds2021/DL/dl-02/data/
 
 
 # Created by https://www.gitignore.io/api/python
